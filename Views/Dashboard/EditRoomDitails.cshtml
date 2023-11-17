@@ -1,0 +1,51 @@
+﻿@model RoomDetails
+
+
+<div class="container">
+    <h2 class="text-center mb-4">Edit Details</h2>
+    <form asp-controller="YourControllerName" asp-action="Edit" method="post" enctype="multipart/form-data">
+        <!-- Replace YourControllerName with the actual controller name -->
+        <input type="hidden" asp-for="@Model.Id" />
+
+        <div class="mb-3">
+            <label for="Image1" class="form-label">Image 1</label>
+            <!-- Assuming Image1 is a path to the image file -->
+            <input type="file" class="form-control" id="Image1" name="Image1">
+            <!-- Display existing image if available -->
+            @if (!string.IsNullOrEmpty(Model.Image1))
+            {
+                <img src="@Url.Content(Model.Image1)" alt="Image 1" style="max-width: 200px; max-height: 200px;">
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="Image2" class="form-label">Image 2</label>
+            <!-- Assuming Image2 is a path to the image file -->
+            <input type="file" class="form-control" id="Image2" name="Image2">
+            <!-- Display existing image if available -->
+            @if (!string.IsNullOrEmpty(Model.Image2))
+            {
+                <img src="@Url.Content(Model.Image2)" alt="Image 2" style="max-width: 200px; max-height: 200px;">
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="Futures" class="form-label">Features</label>
+            <textarea class="form-control" id="Futures" name="Futures" asp-for="@Model.Futures"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="Food" class="form-label">Food Options</label>
+            <input type="text" class="form-control" id="Food" name="Food" asp-for="@Model.Food">
+        </div>
+
+        <div class="mb-3">
+            <label for="IdRooms" class="form-label">Room ID</label>
+            <input type="text" class="form-control" id="IdRooms" name="IdRooms" asp-for="@Model.IdRooms">
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+    </form>
+</div>
