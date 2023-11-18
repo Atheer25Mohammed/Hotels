@@ -27,6 +27,7 @@ namespace Hotels.Controllers
 			return View("Index",hotel);
 
 		}
+
         //Modelstate
         public IActionResult Update(Hotel hotel)
         {

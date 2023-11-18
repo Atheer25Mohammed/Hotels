@@ -88,6 +88,29 @@ namespace Hotels.Controllers
             return View("index", hotel);
 
 		}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        
+
+        public IActionResult Update(Rooms rooms)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.rooms.Update(rooms);
+                _context.SaveChanges();
+                return RedirectToAction("Rooms");
+
+            }
+            return View(rooms);
+        }
+        public IActionResult EditRoom(int id)
+        {
+            var room = _context.rooms.SingleOrDefault(x => x.Id == id);
+            return View(room);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
        
 		public IActionResult Update(Hotel hotel)
 		{
@@ -108,22 +131,9 @@ namespace Hotels.Controllers
 
 			return View(hoteledit);
 		}
-        public IActionResult Update(Rooms rooms)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.rooms.Update(rooms);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-            
-            }
-            return View(rooms);
-        }
-        public IActionResult EditRoom(int id)
-        {
-            var room = _context.rooms.SingleOrDefault(x=> x.Id == id);
-            return View(room);
-        }
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Update(RoomDetails roomDetails)
         {
             if (ModelState.IsValid)
